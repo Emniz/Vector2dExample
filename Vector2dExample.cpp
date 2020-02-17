@@ -7,4 +7,6 @@ int main()
 {
 	Vector2d a = Vector2d(1, 2);
 	Vector2d b = Vector2d(2, 3);
+	a.print();
+	b.print();
 }
