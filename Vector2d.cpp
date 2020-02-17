@@ -37,6 +37,7 @@ void Vector2d::sety(double y) {
 double Vector2d::gety() {
 	return this->y;
 }
+
 Vector2d Vector2d::sum(Vector2d vec) {
 	return Vector2d(x + vec.x, y + vec.y);
 }
@@ -51,8 +52,74 @@ double Vector2d::scalarMult(Vector2d vec) {
 	return this->x * vec.x + this->y * vec.y;
 }
 void Vector2d::print() {
-	cout « "(" « x « ";" « y « ")" « endl;
+	cout << "(" << x << ";" << y << ")" << endl;
 }
 double Vector2d::length() {
 	return sqrt(x * x + y * y);
+}
+double Vector2d::angle(Vector2d vec) {
+	return acos((*this) * vec / (this->length() * vec.length()));
+}
+Vector2d Vector2d::operator+(const Vector2d& vec) const
+{
+	return Vector2d(x + vec.x, y + vec.y);
+}
+Vector2d Vector2d::operator-(const Vector2d& vec) const
+{
+	return Vector2d(x - vec.x, y - vec.y);
+}
+double Vector2d::operator*(const Vector2d& vec) const
+{
+	return (x * vec.x + y * vec.y);
+}
+Vector2d Vector2d::operator*(const double& vec) const
+{
+	return Vector2d(x * vec, y * vec);
+}
+Vector2d operator*(double k, Vector2d& vec)
+{
+	return Vector2d(vec.x * k, vec.y * k);
+}
+Vector2d& Vector2d::operator++() {
+	this->x++;
+	this->y++;
+	return *this;
+}
+Vector2d Vector2d::operator++(int) {
+	Vector2d temp = Vector2d(x, y);
+	this->x++;
+	this->y++;
+	return temp;
+}
+Vector2d& Vector2d::operator--() {
+	this->x--;
+	this->y--;
+	return *this;
+}
+Vector2d Vector2d::operator--(int) {
+	Vector2d temp = Vector2d(x, y);
+	this->x--;
+	this->y--;
+	return temp;
+}
+const Vector2d& Vector2d::operator+= (const Vector2d& vec) {
+	this->x += vec.x;
+	this->y += vec.y;
+	return *this;
+}
+const Vector2d& Vector2d::operator-=(const Vector2d& vec) {
+	this->x -= vec.x;
+	this->y -= vec.y;
+	return *this;
+}
+const Vector2d& Vector2d::operator*=(const double& k)
+{
+	x *= k;
+	y *= k;
+	return *this;
+}
+Vector2d::operator std::string()
+{
+	std::string s = "( " + to_string(x) + " ; " + to_string(y) + " )";
+	return s;
 }
